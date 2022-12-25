@@ -1,0 +1,19 @@
+.book-list {
+    padding: 15px 0 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    background-color: var(--clr3bg-light);
+    margin: 0;
+    padding: 16px;
+    border-top: 2px solid rgb(233, 227, 227);
+}
+
+.book-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--clr3bg);
+}

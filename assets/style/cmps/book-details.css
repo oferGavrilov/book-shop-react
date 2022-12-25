@@ -1,0 +1,36 @@
+.book-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--clr3bg-light);
+    font-size: 1.3rem;
+    padding: 1.5rem;
+}
+.book-details h1 {
+    color: var(--clr1);
+    font-size: 2em;
+    border-bottom: 2px solid var(--gray2);
+    
+}
+.book-details h5 {
+    color: var(--clr2);
+}
+.book-details img {
+    max-width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.book-details .icon {
+    max-width: 70px;
+    margin: 0;
+}
+
+.back-btn {
+    cursor: pointer;
+    background-color: var(--clr3bg);
+    margin: 0.5em;
+    border: 0;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+}
