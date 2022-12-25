@@ -11,7 +11,7 @@ console.log('page' , page)
 
 return <section className="full app">
         <header className="app-header">
-            <h1>My Books App</h1>
+            <h1 onClick={() => setPage('home')}>My Books App</h1>
             <nav className="app-nav">
                 <a href="#" onClick={() => setPage('home')}>Home</a> | 
                 <a href="#" onClick={() => setPage('about')}>About</a> | 

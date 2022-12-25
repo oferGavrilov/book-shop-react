@@ -6,6 +6,7 @@
     font-size: 2rem;
     background-color: var(--clr3bg-light);
     height: 100vh;
+    padding: 1rem;
 }
 
 .icon {

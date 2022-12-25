@@ -3,6 +3,9 @@
     word-spacing: 5px;
 }
 .more-less-btn{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: blue;
+}
+.more-less-btn:hover{
     color: blue;
 }

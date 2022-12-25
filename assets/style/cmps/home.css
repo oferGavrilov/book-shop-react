@@ -6,6 +6,7 @@
     height: 100vh;
     font-size: 1.4rem;
     background-color: var(--clr3bg-light);
+    padding: 1rem;
 }
 .home .icon {
     max-width: 200px;
