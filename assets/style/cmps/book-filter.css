@@ -1,6 +1,10 @@
 .book-filter {
     background-color: var(--clr3bg-light);
     padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.3rem;
 }
 
 .book-filter form {
@@ -10,11 +14,10 @@
 }
 
 .book-filter input{
-    border-radius: 1em;
+    border-radius: .6em;
     border: none;
-    padding: 5px;
+    padding: 8px 20px;
 }
-
 .book-filter .filter-btn {
     display: inline;
     background-color: #a5d3ae;

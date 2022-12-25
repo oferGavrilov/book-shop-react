@@ -10,6 +10,7 @@
 }
 .app-nav > a{
   font-size: 1.2rem;
+  color: white;
 }
 
 /* @media(max-width: 720px) {

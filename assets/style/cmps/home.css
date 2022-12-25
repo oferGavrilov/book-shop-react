@@ -1,0 +1,15 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    height: 100vh;
+    font-size: 1.4rem;
+    background-color: var(--clr3bg-light);
+}
+.home .icon {
+    max-width: 200px;
+}
+.home h2 {
+    margin: 0;
+}
