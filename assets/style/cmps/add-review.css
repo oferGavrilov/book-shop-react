@@ -14,7 +14,7 @@
     border-radius: 1em;
 }
 .add-review input {
-    width: 450px;
+    /* width: 450px; */
     padding: 1rem;
 }
 .add-review label {
