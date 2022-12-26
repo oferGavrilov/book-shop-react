@@ -1,0 +1,22 @@
+.add-review {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    text-align: center;
+}
+.add-review form {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr3bg);
+    margin: auto;
+    padding: 40px;
+    gap: 30px;
+    border-radius: 1em;
+}
+.add-review input {
+    width: 450px;
+    padding: 1rem;
+}
+.add-review label {
+    text-decoration: underline;
+}

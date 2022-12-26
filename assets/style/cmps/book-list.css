@@ -7,7 +7,6 @@
     background-color: var(--clr3bg-light);
     margin: 0;
     padding: 16px;
-    border-top: 2px solid rgb(233, 227, 227);
 }
 
 .book-list li {

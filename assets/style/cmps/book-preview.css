@@ -14,3 +14,22 @@
 .book-preview img {
     max-width: 100px;
 }
+
+.btn-container {
+    display: flex;
+    padding: .4rem;
+}
+
+.add-book-btn {
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    border-radius: 1em;
+    margin: auto;
+    color: white;
+
+    transition: background-color .4s , color .4s;
+}
+.add-book-btn:hover {
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}

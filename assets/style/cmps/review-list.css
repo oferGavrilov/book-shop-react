@@ -1,0 +1,20 @@
+.review-list{
+    display: flex;
+    margin: auto;
+    width: 450px;
+    flex-direction: column;
+    text-align: center;
+}
+.review{
+    display: flex;
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    gap: 2rem;
+    border-radius: 1em;
+}
+.review h4{
+    width: 50%;
+}
+.review span{
+    color: white;
+}

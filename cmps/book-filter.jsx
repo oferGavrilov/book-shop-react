@@ -1,11 +1,17 @@
 import { bookService } from "../services/book.service.js"
 
-const { useState, useEffect } = React
+const { useState, useEffect , useRef } = React
 
 
 export function BookFilter({ onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(bookService.getDefaultFilter())
+    const elInputRef = useRef(null)
+
+    useEffect(() => {
+        elInputRef.current.focus()
+    } , [])
+
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
@@ -14,7 +20,7 @@ export function BookFilter({ onSetFilter }) {
 
     function handleTitleChange({ target }) {
         let { value, name: field, type } = target
-        value = type === 'number' || 'select' ? +value : value
+        value = (type === 'number')  ? +value : value
         setFilterByToEdit((prevFilter) => {
             return { ...prevFilter, [field]: value }
         })
@@ -38,6 +44,7 @@ export function BookFilter({ onSetFilter }) {
                 name="txt"
                 id="title-filter"
                 placeholder="By title.."
+                ref={elInputRef}
                 value={filterByToEdit.txt}
                 onChange={handleTitleChange} />
 
@@ -50,7 +57,7 @@ export function BookFilter({ onSetFilter }) {
                 onChange={handleTitleChange} />
 
             <label htmlFor="page-count-filter">Page count:</label>
-            <select name="pageCount" id="page-count-filter" type={'pageCount'} onChange={handleTitleChange}>
+            <select name="pageCount" id="page-count-filter" type='number' onChange={handleTitleChange}>
                 <option value="all">All</option>
                 <option value="500">Serious reading</option>
                 <option value="200">Descent reading</option>
@@ -58,7 +65,7 @@ export function BookFilter({ onSetFilter }) {
             </select>
 
             <label htmlFor="publishedAt-filter">Published at:</label>
-            <select name="minYear" id="publishedAt-filter" type={'year'} onChange={handleTitleChange}>
+            <select name="minYear" id="publishedAt-filter" type='number' onChange={handleTitleChange}>
                 <option value="all">All</option>
                 <option value="25">In last 25 years</option>
                 <option value="15">In last 15 years</option>

@@ -1,17 +1,21 @@
-import { utilService } from "../services/util.service.js"
 
 const { useState } = React
 
-export function LongTxt() {
+export function LongTxt({txt, length}) {
 
     const [isShowMore , setShowMore] = useState(false)
 
-  console.log(isShowMore)
+
+    function getTxtToShow( txt , length) {
+        return (txt.length < length || isShowMore) ? txt : txt.substring(0, length + 1) + '...'
+    }
+
+    function onToggleLongTxt() {
+        setShowMore(prevLongTxtShown => !prevLongTxtShown)
+    }
 
     return <article className="long-txt">
-        <p>{utilService.makeLorem(100)} {isShowMore && <span className="more">{utilService.makeLorem(150)}</span>}
-            <button className="more-less-btn" 
-            onClick={() => setShowMore(!isShowMore)}>{isShowMore ? 'Shoe less' : 'Show more'}</button>
-        </p>
+        <p>{getTxtToShow( txt , length)}</p>
+        {txt.length > length && <button onClick={onToggleLongTxt}>{isShowMore ? 'Read less' : 'Read more'}</button>}
     </article>
 }

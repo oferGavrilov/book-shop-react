@@ -26,11 +26,42 @@
     margin: 0;
 }
 
-.back-btn {
-    cursor: pointer;
+
+.review-container {
+    background-color: #fff;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.edit-btn {
     background-color: var(--clr3bg);
-    margin: 0.5em;
-    border: 0;
-    padding: 0.5em 0.8em;
-    border-radius: 4px;
+    padding: 1rem;
+    border-radius: 1em;
+    margin: 1rem auto;
+    color: white;
+
+    transition: background-color .4s , color .4s;
+}
+.edit-btn:hover {
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}
+
+.back-btn {
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    border-radius: 1em;
+    margin: 1rem auto;
+    color: white;
+
+    transition: background-color .4s , color .4s;
+}
+.back-btn:hover {
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}
+
+.book-details span{
+    margin: auto;
 }

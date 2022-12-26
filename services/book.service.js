@@ -11,6 +11,7 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
+    getDefaultReview
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -35,29 +36,32 @@ function query(filterBy = getDefaultFilter()) {
         })
 }
 
-function get(carId) {
-    return storageService.get(BOOK_KEY, carId)
-    // return axios.get(BOOK_KEY, carId)
+function get(bookId) {
+    return storageService.get(BOOK_KEY, bookId)
 }
 
-function remove(carId) {
-    return storageService.remove(BOOK_KEY, carId)
+function remove(bookId) {
+    return storageService.remove(BOOK_KEY, bookId)
 }
 
-function save(car) {
-    if (car.id) {
-        return storageService.put(BOOK_KEY, car)
+function save(book) {
+    if (book.id) {
+        return storageService.put(BOOK_KEY, book)
     } else {
-        return storageService.post(BOOK_KEY, car)
+        return storageService.post(BOOK_KEY, book)
     }
 }
 
-function getEmptyBook(title = '', price = 0) {
-    return { id: '', title }
+function getEmptyBook(title = '', price = '') {
+    return { title: '', price: '' }
 }
 
 function getDefaultFilter() {
     return { txt: '', minPrice: '', pageCount: '', minYear: '' }
+}
+
+function getDefaultReview() {
+    return {fullName: '' , rating: 0, readAt: '' , id: ''}
 }
 
 function _createBooks() {
@@ -505,6 +509,10 @@ function _createBooks() {
                 }
             }
         ]
+        books.forEach(book => {
+            book.price = book.listPrice.amount
+            book.reviews = []
+        })
         utilService.saveToStorage(BOOK_KEY, books)
     }
 }
