@@ -7,7 +7,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
-    getYearsDistance
+    getYearsDistance,
+    getBoolean
 }
 
 function makeId(length = 6) {
@@ -17,7 +18,6 @@ function makeId(length = 6) {
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-
     return txt
 }
 
@@ -65,4 +65,8 @@ function getMonthName(date) {
         'July', 'August', 'September', 'October', 'November', 'December'
     ]
     return monthNames[date.getMonth()]
+}
+
+function getBoolean() {
+    return Math.random() < 0.5
 }

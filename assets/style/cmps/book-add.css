@@ -1,0 +1,28 @@
+.book-add{
+    background-color: var(--clr3bg-light);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-add h2{
+    /* text-align: center; */
+    color: violet;
+}
+
+.book-add form{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+}
+.book-add input{
+    padding: .5rem 2rem;
+}
+.book-add .search-btn{
+    background-color: var(--clr3bg);
+}
+
+.hidden {
+    visibility: hidden;
+}

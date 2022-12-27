@@ -1,0 +1,10 @@
+.search-preview h2{
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    border-radius: 1em;
+    margin: 1rem 1rem;
+    color: aliceblue;
+}
+.search-preview {
+    list-style-type: none;;
+}

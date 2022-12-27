@@ -5,6 +5,7 @@ const { Route, Routes } = ReactRouterDOM
 import { AppHeader } from './cmps/app-header.jsx'
 import { UserMsg } from './cmps/user-msg.jsx'
 import { AboutUs } from './pages/about-us.jsx'
+import { BookAdd } from './pages/book-add.jsx'
 import { BookDetails } from './pages/book-details.jsx'
 import { BookEdit } from './pages/book-edit.jsx'
 import { BookIndex } from './pages/book-index.jsx'
@@ -25,6 +26,7 @@ export function App() {
                     <Route element={<BookIndex /> } path="/book" />
                     <Route element={<BookEdit />} path="/book/edit" />
                     <Route element={<BookEdit />} path="/book/edit/:bookId" />
+                    <Route element={<BookAdd />} path="/book/addBook" />
                     <Route element={<BookDetails/>} path="/book/:bookId" />
                 </Routes>
             </main>

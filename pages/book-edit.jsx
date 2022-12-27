@@ -6,7 +6,7 @@ const {useNavigate , useParams , Link} = ReactRouterDOM
 
 export function BookEdit() {
 
-    const [bookToEdit , setBookToEdit] = useState(bookService.getEmptyBook())
+    const [bookToEdit , setBookToEdit] = useState(bookService.createEmptyBook())
     const navigate = useNavigate()
     const {bookId} = useParams()
 

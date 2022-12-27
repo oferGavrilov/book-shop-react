@@ -7,13 +7,12 @@ const { useParams } = ReactRouterDOM
 
 
 
-export function AddReview({currBook , setCurrBook }) {
+export function AddReview({onSaveReview}) {
     const [review, setReview] = useState(bookService.getDefaultReview())
-    const params = useParams()
-    console.log(params)
 
     function handleChange({target}) {
-        let {value , name:field } = target
+        let {value , name:field ,type} = target
+        value = type === "range" ? +value : value
         setReview((prevReview => {
             return {...prevReview , [field] : value}
         }))
@@ -22,19 +21,7 @@ export function AddReview({currBook , setCurrBook }) {
 
     function onSubmitReview(ev){
         ev.preventDefault()
-        console.log(currBook)
-        currBook.reviews.push({
-            ...review,
-            id: utilService.makeId()
-        })
-        bookService.save(currBook).then(book=> {
-            showSuccessMsg('Review has been added')
-            setCurrBook(book)
-        })
-        .catch((err) =>{
-            console.log(err)
-            showErrorMsg('Could not add review')
-        })
+        onSaveReview(review)
     }
 
     return <article className="add-review">
@@ -52,7 +39,8 @@ export function AddReview({currBook , setCurrBook }) {
             <input type="range"
                 id="rating"
                 max="5"
-                step="1"
+                min="0"
+                // step="1"
                 name="rating"
                 value={review.rating}
                 title={review.rating}

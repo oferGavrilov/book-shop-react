@@ -45,6 +45,8 @@ export function BookIndex() {
         <Link className="add-book-btn" to="/book/edit">Add book</Link>
         </div>
 
+        <Link to="/book/addBook">Add book from google</Link>
+
         <BookList books={books} onRemoveBook={onRemoveBook}/>
 
     </section>

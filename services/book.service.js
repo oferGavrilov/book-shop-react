@@ -11,7 +11,13 @@ export const bookService = {
     save,
     getEmptyBook,
     getDefaultFilter,
-    getDefaultReview
+    getDefaultReview,
+    createEmptyBook,
+    removeReview,
+    saveReview,
+    getNextBookId,
+    addGoogleBook,
+    isAlreadyExist
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -28,16 +34,31 @@ function query(filterBy = getDefaultFilter()) {
             if (filterBy.pageCount) {
                 books = books.filter(book => book.pageCount <= filterBy.pageCount)
             }
-            if(filterBy.minYear){
+            if (filterBy.minYear) {
                 books = books.filter(book => filterBy.minYear >= utilService.getYearsDistance(book.publishedDate))
             }
-            
+
             return books
         })
 }
 
 function get(bookId) {
+    console.log(bookId)
     return storageService.get(BOOK_KEY, bookId)
+}
+// function getByTitle(bookId) {
+//     console.log(bookId)
+//     return storageService.get(BOOK_KEY, bookId)
+// }
+
+function getNextBookId(bookId , value) {
+    // console.log('Getting next book', bookId , 'value', value)
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            var idx = books.findIndex(book => book.id === bookId)
+            if (idx === books.length - 1) idx = -1
+            return books[idx + 1].id
+        })
 }
 
 function remove(bookId) {
@@ -52,6 +73,15 @@ function save(book) {
     }
 }
 
+function addGoogleBook(book) {
+    return storageService.postGoogleBook(BOOK_KEY, book)
+}
+
+function isAlreadyExist(bookId) {
+    const books = _loadBookFromStorage()
+    return books.find(book => book.id === bookId)
+}
+
 function getEmptyBook(title = '', price = '') {
     return { title: '', price: '' }
 }
@@ -61,7 +91,56 @@ function getDefaultFilter() {
 }
 
 function getDefaultReview() {
-    return {fullName: '' , rating: 0, readAt: '' , id: ''}
+    return { fullName: '', rating: 0, readAt: '', id: '' }
+}
+
+
+
+function saveReview(bookId , reviewToSave) {
+    const books = _loadBookFromStorage()
+    const book = books.find((book) => book.id === bookId)
+    const review = _createReview(reviewToSave)
+    console.log(review)
+    book.reviews.unshift(review)
+    _saveBooksToStorage(books)
+    return Promise.resolve(review)
+}
+
+function removeReview(bookId, reviewId) {
+    let books = _loadBookFromStorage()
+    let book = books.find((book) => book.id === bookId)
+    const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+    book.reviews = newReviews
+    _saveBooksToStorage(books)
+    return Promise.resolve()
+}
+
+function _createReview(reviewToSave) {
+    return {
+        ...reviewToSave ,
+        id: utilService.makeId()
+    }
+}
+
+function createEmptyBook() {
+    return {
+        title: '',
+        subtitle: '',
+        authors: [],
+        publishedDate: '',
+        description: '',
+        pageCount: 0,
+        categories: [],
+        thumbnail: '',
+        language: 'en',
+        listPrice: {
+            amount: 0,
+            currencyCode: '',
+            isOnSale: false
+        },
+        price: 0,
+        reviews: []
+    }
 }
 
 function _createBooks() {
@@ -512,7 +591,18 @@ function _createBooks() {
         books.forEach(book => {
             book.price = book.listPrice.amount
             book.reviews = []
+            book.isOnSale = book.listPrice.isOnSale
         })
         utilService.saveToStorage(BOOK_KEY, books)
     }
+}
+
+///// private functions ///////
+
+function _saveBooksToStorage(books) {
+    storageService.saveToStorage(BOOK_KEY , books)
+}
+
+function _loadBookFromStorage() {
+    return storageService.loadFromStorage(BOOK_KEY)
 }

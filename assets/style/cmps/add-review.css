@@ -13,8 +13,7 @@
     gap: 30px;
     border-radius: 1em;
 }
-.add-review input {
-    /* width: 450px; */
+.add-review input:not(#rating) {
     padding: 1rem;
 }
 .add-review label {

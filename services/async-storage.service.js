@@ -4,6 +4,9 @@ export const storageService = {
     post,
     put,
     remove,
+    saveToStorage,
+    loadFromStorage,
+    postGoogleBook
 }
 
 function query(entityType, delay = 500) {
@@ -23,6 +26,15 @@ function post(entityType, newEntity) {
     newEntity = {...newEntity}
     newEntity.id = _makeId()
     return query(entityType).then(entities => {
+        entities.push(newEntity)
+        _save(entityType, entities)
+        return newEntity
+    })
+}
+
+function postGoogleBook(entityType, newEntity) {
+    newEntity = {...newEntity}
+    return query(entityType).then(entities =>{
         entities.push(newEntity)
         _save(entityType, entities)
         return newEntity
@@ -53,6 +65,16 @@ function remove(entityType, entityId) {
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
+function saveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val))
+}
+
+function loadFromStorage(key) {
+    var val = localStorage.getItem(key)
+    return JSON.parse(val)
+}
+
 
 function _makeId(length = 5) {
     var text = ''
