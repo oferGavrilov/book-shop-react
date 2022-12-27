@@ -15,7 +15,7 @@ export const bookService = {
     createEmptyBook,
     removeReview,
     saveReview,
-    getNextBookId,
+    getPrevNextBookId,
     addGoogleBook,
     isAlreadyExist
 }
@@ -51,13 +51,13 @@ function get(bookId) {
 //     return storageService.get(BOOK_KEY, bookId)
 // }
 
-function getNextBookId(bookId , value) {
+function getPrevNextBookId(bookId , value) {
     // console.log('Getting next book', bookId , 'value', value)
     return storageService.query(BOOK_KEY)
         .then(books => {
             var idx = books.findIndex(book => book.id === bookId)
-            if (idx === books.length - 1) idx = -1
-            return books[idx + 1].id
+            if (idx === books.length - 1 && value === 1 || idx === 0 && value === -1) return bookId
+            return books[idx + value].id
         })
 }
 

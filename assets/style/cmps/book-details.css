@@ -65,3 +65,25 @@
 .book-details span{
     margin: auto;
 }
+
+.btn{
+    background-color: var(--clr3bg);
+    padding: .7rem;
+    color: aliceblue;
+    border-radius: 1em;
+    position: absolute;
+
+    transition: background-color .7s , color .7s;
+}
+.btn:hover{
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}
+.prev-btn{
+    bottom: 10%;
+    left: 10px;
+}
+.next-btn{
+    bottom: 10%;
+    right: 10px;
+}

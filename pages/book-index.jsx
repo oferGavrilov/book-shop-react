@@ -43,9 +43,9 @@ export function BookIndex() {
 
         <div className="btn-container">
         <Link className="add-book-btn" to="/book/edit">Add book</Link>
+        <Link to="/book/addBook"><button className="add-book-google-btn">Add book from google</button></Link>
         </div>
 
-        <Link to="/book/addBook">Add book from google</Link>
 
         <BookList books={books} onRemoveBook={onRemoveBook}/>
 

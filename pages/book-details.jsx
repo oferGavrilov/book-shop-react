@@ -12,9 +12,9 @@ export function BookDetails({ onGoBack }) {
 
     const [book, setBook] = useState(null)
     const [nextBookId, setNextBookId] = useState(null)
-    // const [navigator , setNavigator] = useState(null)
+    const [prevBookId, setPrevBookId] = useState(null)
+
     const navigate = useNavigate()
-    // const navigator =  useRef(null)
     const { bookId } = useParams()
 
     useEffect(() => {
@@ -30,8 +30,10 @@ export function BookDetails({ onGoBack }) {
                 navigate('/book')
             })
 
-        bookService.getNextBookId(bookId)
+        bookService.getPrevNextBookId(bookId , 1)
             .then(setNextBookId)
+        bookService.getPrevNextBookId(bookId , -1)
+            .then(setPrevBookId)
     }
 
     function onGoBack() {
@@ -105,8 +107,8 @@ export function BookDetails({ onGoBack }) {
 
         <Link className={"edit-btn"} to={`/book/edit/${book.id}`}>Edit book</Link>
 
-        {/* <Link className={"prev-btn"} to={`/book/${nextBookId}`}>Prev book</Link> */}
-        <Link className={"next-btn"} to={`/book/${nextBookId}`}>Next book</Link>
+        <Link className={"prev-btn btn"} to={`/book/${prevBookId}`}>Prev book</Link>
+        <Link className={"next-btn btn"} to={`/book/${nextBookId}`}>Next book</Link>
 
         <button className="back-btn" onClick={onGoBack}>Go back</button>
     </section>
